@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+{% extends "mybase.html" %}
+{%block title %}recommend{% endblock %}
+
+{% block page_content %}
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div>
+<form class="container" method="POST" action="/update">
+  <h2>請選擇喜歡的工作</h2>
+  <p></p>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+         {% for colname in colnames %}
+            {% if colname != "jobCode" %}
+            <th scope="col" > {{ colname }} </th>
+            {% endif %}
+         {% endfor %}
+
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in datarows %}
+        <tr>
+          <!-- id -->
+          <th hidden>{{ row.0 }}</th>
+          <!-- JobCode -->
+          <th hidden>{{ row.1 }}</th>
+          <th scope="row" > {{ row.2 }}</th>
+          <td>{{ row.3 }}</td>
+          <td>{{ row.4 }}</td>
+          <td><a href="{{ row.5 }}">詳細資訊</a></td>
+          <td><a href="/index/new/third/map?jobCode={{ row.1 }}">{{ row.6 }}地圖資訊</a> </td>
+          <td>
+            <input type="checkbox" name="chk[]" value="{{ row }}"/>
+          </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+   <button type="submit" class="btn btn-primary">confirm</button>
+</form>
+</div>
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,75 @@
+version: '3'
+services:
+  jupyter:
+    build:
+      context: ./dockerfile
+      dockerfile: dockerfile-jupyter
+    container_name: jupyter
+    hostname: jupyter
+    restart: unless-stopped
+    ports:
+      - 9999:8888
+      - 5000:5000
+      - 5050:5050
+    user: root
+    command: start-notebook.sh --NotebookApp.token=''
+    working_dir: /home/spades/project
+    volumes:
+      - ./jupyter_data:/home/spades/project
+      - ./jupyter_data/jupyter_notebook_config.py:/root/.jupyter/jupyter_notebook_config.py
+    environment:
+      - NB_USER=spades
+      - NB_GID=1000
+      - CHOWN_HOME=yes
+      - CHOWN_HOME_OPTS=-R
+
+  mongo:
+    image: mongo
+    container_name: mongodb
+    hostname: mongodb
+    restart: always
+    expose:
+      - 6666
+    ports:
+      - 27017:27017
+    volumes:
+      - ./mongodb:/data/db
+
+  adminmongo:
+    image: mrvautin/adminmongo
+    container_name: adminmongo
+    hostname: adminmongo
+    ports:
+      - 1234:1234
+    environment:
+      - HOST=0.0.0.0
+
+  mysql:
+    build:
+      context: ./dockerfile
+      dockerfile: dockerfile-mysql
+    container_name: mysql
+    hostname: mysql
+    restart: always
+    ports:
+      - 3306:3306
+    volumes:
+      - ./mysql_data:/user_data
+      - ./mysql:/var/lib/mysql
+    environment:
+      - MYSQL_DATABASE=project
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=user
+      - MYSQL_ROOT_PASSWORD=root
+
+  ngrok:
+    image: wernight/ngrok
+    container_name: chatbot_ngrok
+    tty: true
+    stdin_open: true
+    ports:
+      - "4040"
+    depends_on:
+      - jupyter
+    command: ngrok http jupyter:5000 
+

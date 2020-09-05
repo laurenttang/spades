@@ -1,0 +1,21 @@
+FROM jupyter/pyspark-notebook:dd2087c75645
+RUN pip install --upgrade pip
+RUN pip install 'numpy==1.18.5' \
+  'tensorflow==1.13.1' \
+  scrapy \
+  bs4 \
+  CKIPtagger \
+  gensim \
+  tqdm \
+  pipenv \
+  requests \
+  pymongo \
+  pymysql \
+  pyspark \
+  flask \
+  pandas \
+  boto3 \
+  line-bot-sdk \
+  mysql-connector-python \
+  hdfs \
+  'py4j==0.10.7' \

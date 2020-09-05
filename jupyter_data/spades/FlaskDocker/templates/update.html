@@ -1,0 +1,32 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <div>
+        <p>RESULT: {{ json["msg"] }}</p>
+    </div>
+    <table>
+        </thead>
+            <tr>
+                <th>工作代碼</th>
+                <th>公司名稱</th>
+                <th>工作名稱</th>
+                <th>薪資</th>
+            </tr>
+        </thead>
+        <tboday>
+            {% for index in range(json["jobs"]|length) %}
+            <tr>
+                <td> {{ json["jobs"][index]["id"] }}</td>
+                <td> {{ json["jobs"][index]["job"] }}</td>
+                <td> {{ json["jobs"][index]["name"] }}</td>
+                <td> {{ json["jobs"][index]["salary"] }}</td>
+            </tr>
+            {% endfor %}
+        </tboday>
+    </table>
+</body>
+</html>

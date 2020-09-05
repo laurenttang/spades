@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+{% extends "bootstrap/base.html" %}
+
+{% block title %}Flask Webapp Demo{% endblock %}
+
+{% block navbar %}
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+        <a href="/"><img href='/' class="navbar-brand width="60" height="60" src="{{ url_for('static',filename='searchjobs_icon.png') }}"></a>
+  <!-- Brand -->
+      <a class="navbar-brand" href="/"></a>
+
+
+  <!-- Toggler/collapsibe Button -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- Navbar links -->
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav">
+      <li class="nav-item"><a class="nav-link" href="/">Resume</a>
+      </li>
+      <li class="nav-item"><a class="nav-link" href="/index">First_Job</a>
+      </li>
+        </li>
+      <li class="nav-item"><a class="nav-link" href="/index/new">Second-Job</a>
+      </li>
+        <li class="nav-item"><a class="nav-link" href="/index/new/third">Third-Job</a>
+      </li>
+        <li class="nav-item"><a class="nav-link" href="/index/new/third/map">Google Map</a>
+      </li>
+        <li class="nav-item"><a class="nav-link" href="/index/new/third/map/recommend">recommend</a>
+      </li>
+      <li class="nav-item"><a class="nav-link" href="/index/new/third/map/recommend/update">update</a>
+      </li>
+      <li class="nav-item"><a class="nav-link" href="/index/new/third/map/recommend/recommend_2">recommend_2</a>
+      </li>
+    </ul>
+   </div>
+  </nav>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+      {% block page_content %} {% endblock %}
+    </div>
+{% endblock %}
