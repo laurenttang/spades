@@ -15,7 +15,7 @@ curl $(docker port chatbot_ngrok 4040)/api/tunnels ->
 
 把 網域 貼到 line Developer , botapp.py ->
 
-(line Develop user/secretkey 更新到botapp.py) ->
+(line Develop channel token/channel secret 更新到botapp.py) ->
 
 開兩個 terminal : docker exec -it jupyter bash ->
 
