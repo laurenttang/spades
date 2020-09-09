@@ -9,7 +9,7 @@ git clone 程式碼 ->
 
 docker-compose up -d -> 
 
-把s3資料依照Framework放入 -> 
+把s3資料依照Framework放入 -> (mysql資料整包倒入後 要重新 docker-compose up) 
 
 curl $(docker port chatbot_ngrok 4040)/api/tunnels ->
 
